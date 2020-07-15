@@ -34,6 +34,10 @@ class Pressure(db.Model):
     def __repr__(self):
         return f'<Pressure {self.amount}>'
 
+@app.shell_context_processor
+def make_shell_context():
+    return dict(db=db, User=User, Pressure=Pressure)
+
 @app.route('/')
 def index():
     return render_template('index.html')
